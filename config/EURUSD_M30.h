@@ -19,12 +19,12 @@ struct Stg_MACD_Params_M30 : StgParams {
   // Struct constructor.
   Stg_MACD_Params_M30() : StgParams(stg_macd_defaults) {
     lot_size = 0;
-    signal_open_method = 0;
-    signal_open_filter = 1;
-    signal_open_level = (float)0;
-    signal_open_boost = 0;
+    signal_close_level = (float)20;
     signal_close_method = 0;
-    signal_close_level = (float)0;
+    signal_open_boost = 0;
+    signal_open_filter = 1;
+    signal_open_level = (float)20;
+    signal_open_method = 0;
     price_stop_method = 0;
     price_stop_level = (float)2;
     tick_filter_method = 1;

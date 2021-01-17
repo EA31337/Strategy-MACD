@@ -19,15 +19,15 @@ struct Stg_MACD_Params_{{ Timeframe }} : StgParams {
   // Struct constructor.
   Stg_MACD_Params_{{ Timeframe }}() : StgParams(stg_macd_defaults) {
     lot_size = {{ MACD_LotSize | default(0) }};
-    signal_open_method = {{ MACD_SignalOpenMethod | default(0) }};
+    max_spread = {{ MACD_MaxSpread | default(0) }};
+    price_stop_level = (float){{ MACD_SignalCloseLevel | default(1) }};
+    price_stop_method = {{ MACD_PriceStopMethod | default(0) }};
+    signal_close_level = (float){{ MACD_SignalCloseLevel | default(0) }};
+    signal_close_method = {{ MACD_SignalCloseMethod | default(0) }};
+    signal_open_boost = {{ MACD_SignalOpenBoostMethod | default(0) }};
     signal_open_filter = {{ MACD_SignalOpenFilterMethod | default(1) }};
     signal_open_level = (float){{ MACD_SignalOpenLevel | default(0) }};
-    signal_open_boost = {{ MACD_SignalOpenBoostMethod | default(0) }};
-    signal_close_method = {{ MACD_SignalCloseMethod | default(0) }};
-    signal_close_level = (float){{ MACD_SignalCloseLevel | default(0) }};
-    price_stop_method = {{ MACD_PriceStopMethod | default(0) }};
-    price_stop_level = (float){{ MACD_SignalCloseLevel | default(1) }};
+    signal_open_method = {{ MACD_SignalOpenMethod | default(0) }};
     tick_filter_method = {{ MACD_TickFilterMethod  | default(1) }};
-    max_spread = {{ MACD_MaxSpread | default(0) }};
   }
 } stg_macd_{{ Timeframe | lower }};

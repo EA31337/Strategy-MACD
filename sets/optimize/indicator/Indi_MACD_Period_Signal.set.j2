@@ -1,14 +1,14 @@
 MACD_Indi_MACD_Applied_Price={{ applied_price | replace("(ENUM_APPLIED_PRICE)", "") | int | default(0) }}
-MACD_Indi_MACD_Period_Fast={{ (ema_fast_period | default(0) | int) }}
+MACD_Indi_MACD_Period_Fast={{ (ema_fast_period | default(0) | int) | abs }}
 MACD_Indi_MACD_Period_Signal,1={{ (signal_period | default(0) | int) - 4 | abs }}
 MACD_Indi_MACD_Period_Signal,2=2
 MACD_Indi_MACD_Period_Signal,3={{ (signal_period | default(0) | int) + 4 }}
 MACD_Indi_MACD_Period_Signal,F=1
 MACD_Indi_MACD_Period_Signal={{ (signal_period | default(0) | int) }}
 MACD_Indi_MACD_Period_Slow={{ (ema_slow_period | default(0) | int) }}
-MACD_Indi_MACD_Shift={{ shift | default(0) }}
+MACD_Indi_MACD_Shift={{ (shift | default(0) | int) }}
 MACD_LotSize={{ lot_size | default(0) }}
 MACD_PriceStopMethod=0
 MACD_SignalOpenFilterMethod=1
-MACD_SignalOpenLevel={{ (signal_open_level | default(0) | replace("(float)", "") | float) }}
+MACD_SignalOpenLevel={{ signal_open_level | default(0) | float }}
 MACD_TickFilterMethod=1
