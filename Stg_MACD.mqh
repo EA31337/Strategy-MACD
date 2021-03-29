@@ -16,7 +16,7 @@ INPUT int MACD_PriceStopMethod = 0;                               // Price stop 
 INPUT float MACD_PriceStopLevel = 0;                              // Price stop level
 INPUT int MACD_TickFilterMethod = 1;                              // Tick filter method
 INPUT float MACD_MaxSpread = 4.0;                                 // Max spread to trade (pips)
-INPUT int MACD_Shift = 0;                                         // Shift
+INPUT short MACD_Shift = 0;                                       // Shift
 INPUT int MACD_OrderCloseTime = -20;                              // Order close time in mins (>0) or bars (<0)
 INPUT string __MACD_Indi_MACD_Parameters__ =
     "-- MACD strategy: MACD indicator params --";                               // >>> MACD strategy: MACD indicator <<<
