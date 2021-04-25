@@ -68,7 +68,8 @@ struct Stg_MACD_Params : StgParams {
 
 class Stg_MACD : public Strategy {
  public:
-  Stg_MACD(StgParams &_params, Trade *_trade = NULL, string _name = "") : Strategy(_params, _trade, _name) {}
+  Stg_MACD(StgParams &_sparams, TradeParams &_tparams, ChartParams &_cparams, string _name = "")
+      : Strategy(_sparams, _tparams, _cparams, _name) {}
 
   static Stg_MACD *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL, ENUM_LOG_LEVEL _log_level = V_INFO) {
     // Initialize strategy initial values.
@@ -84,8 +85,9 @@ class Stg_MACD : public Strategy {
     MACDParams macd_params(_indi_params);
     _stg_params.SetIndicator(new Indi_MACD(_indi_params));
     // Initialize Strategy instance.
+    ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams(_magic_no, _log_level);
-    Strategy *_strat = new Stg_MACD(_stg_params, new Trade(new Chart(_tf, _Symbol)), "MACD");
+    Strategy *_strat = new Stg_MACD(_stg_params, _tparams, _cparams, "MACD");
     return _strat;
   }
 
