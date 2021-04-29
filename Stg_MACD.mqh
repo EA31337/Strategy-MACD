@@ -51,7 +51,7 @@ struct Stg_MACD_Params : StgParams {
 
   // Struct constructors.
   Stg_MACD_Params(MACDParams &_iparams, StgParams &_sparams)
-      : iparams(indi_macd_defaults, _iparams.tf), sparams(stg_macd_defaults) {
+      : iparams(indi_macd_defaults, _iparams.tf.GetTf()), sparams(stg_macd_defaults) {
     iparams = _iparams;
     sparams = _sparams;
   }
