@@ -4,22 +4,21 @@
  */
 
 // User input params.
-INPUT string __MACD_Parameters__ = "-- MACD strategy params --";  // >>> MACD <<<
-INPUT float MACD_LotSize = 0;                                     // Lot size
-INPUT int MACD_SignalOpenMethod = 2;                              // Signal open method (-127-127)
-INPUT float MACD_SignalOpenLevel = 0.0f;                          // Signal open level
-INPUT int MACD_SignalOpenFilterMethod = 32;                       // Signal open filter method
-INPUT int MACD_SignalOpenBoostMethod = 0;                         // Signal open boost method
-INPUT int MACD_SignalCloseMethod = 2;                             // Signal close method (-127-127)
-INPUT float MACD_SignalCloseLevel = 0.0f;                         // Signal close level
-INPUT int MACD_PriceStopMethod = 1;                               // Price stop method
-INPUT float MACD_PriceStopLevel = 0;                              // Price stop level
-INPUT int MACD_TickFilterMethod = 1;                              // Tick filter method
-INPUT float MACD_MaxSpread = 4.0;                                 // Max spread to trade (pips)
-INPUT short MACD_Shift = 0;                                       // Shift
-INPUT int MACD_OrderCloseTime = -20;                              // Order close time in mins (>0) or bars (<0)
-INPUT string __MACD_Indi_MACD_Parameters__ =
-    "-- MACD strategy: MACD indicator params --";                               // >>> MACD strategy: MACD indicator <<<
+INPUT_GROUP("MACD strategy: strategy params");
+INPUT float MACD_LotSize = 0;                // Lot size
+INPUT int MACD_SignalOpenMethod = 2;         // Signal open method (-127-127)
+INPUT float MACD_SignalOpenLevel = 0.0f;     // Signal open level
+INPUT int MACD_SignalOpenFilterMethod = 32;  // Signal open filter method
+INPUT int MACD_SignalOpenBoostMethod = 0;    // Signal open boost method
+INPUT int MACD_SignalCloseMethod = 2;        // Signal close method (-127-127)
+INPUT float MACD_SignalCloseLevel = 0.0f;    // Signal close level
+INPUT int MACD_PriceStopMethod = 1;          // Price stop method
+INPUT float MACD_PriceStopLevel = 0;         // Price stop level
+INPUT int MACD_TickFilterMethod = 1;         // Tick filter method
+INPUT float MACD_MaxSpread = 4.0;            // Max spread to trade (pips)
+INPUT short MACD_Shift = 0;                  // Shift
+INPUT int MACD_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
+INPUT_GROUP("MACD strategy: MACD indicator params");
 INPUT int MACD_Indi_MACD_Period_Fast = 16;                                      // Period Fast
 INPUT int MACD_Indi_MACD_Period_Slow = 30;                                      // Period Slow
 INPUT int MACD_Indi_MACD_Period_Signal = 8;                                     // Period for signal
