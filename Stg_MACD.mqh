@@ -18,6 +18,8 @@ INPUT float MACD_PriceStopLevel = 0;         // Price stop level
 INPUT int MACD_TickFilterMethod = 1;         // Tick filter method
 INPUT float MACD_MaxSpread = 4.0;            // Max spread to trade (pips)
 INPUT short MACD_Shift = 0;                  // Shift
+INPUT float MACD_OrderCloseLoss = 0;         // Order close loss
+INPUT float MACD_OrderCloseProfit = 0;       // Order close profit
 INPUT int MACD_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
 INPUT_GROUP("MACD strategy: MACD indicator params");
 INPUT int MACD_Indi_MACD_Period_Fast = 16;                                      // Period Fast
@@ -41,7 +43,11 @@ struct Stg_MACD_Params_Defaults : StgParams {
       : StgParams(::MACD_SignalOpenMethod, ::MACD_SignalOpenFilterMethod, ::MACD_SignalOpenLevel,
                   ::MACD_SignalOpenBoostMethod, ::MACD_SignalCloseMethod, ::MACD_SignalCloseFilter,
                   ::MACD_SignalCloseLevel, ::MACD_PriceStopMethod, ::MACD_PriceStopLevel, ::MACD_TickFilterMethod,
-                  ::MACD_MaxSpread, ::MACD_Shift, ::MACD_OrderCloseTime) {}
+                  ::MACD_MaxSpread, ::MACD_Shift) {
+    Set(STRAT_PARAM_OCL, MACD_OrderCloseLoss);
+    Set(STRAT_PARAM_OCP, MACD_OrderCloseProfit);
+    Set(STRAT_PARAM_OCT, MACD_OrderCloseTime);
+  }
 } stg_macd_defaults;
 
 // Struct to define strategy parameters to override.
