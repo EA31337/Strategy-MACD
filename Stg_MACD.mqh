@@ -11,6 +11,7 @@ INPUT float MACD_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int MACD_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT int MACD_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int MACD_SignalCloseMethod = 2;        // Signal close method (-127-127)
+INPUT int MACD_SignalCloseFilter = 0;        // Signal close filter (-127-127)
 INPUT float MACD_SignalCloseLevel = 0.0f;    // Signal close level
 INPUT int MACD_PriceStopMethod = 1;          // Price stop method
 INPUT float MACD_PriceStopLevel = 0;         // Price stop level
@@ -38,9 +39,9 @@ struct Indi_MACD_Params_Defaults : MACDParams {
 struct Stg_MACD_Params_Defaults : StgParams {
   Stg_MACD_Params_Defaults()
       : StgParams(::MACD_SignalOpenMethod, ::MACD_SignalOpenFilterMethod, ::MACD_SignalOpenLevel,
-                  ::MACD_SignalOpenBoostMethod, ::MACD_SignalCloseMethod, ::MACD_SignalCloseLevel,
-                  ::MACD_PriceStopMethod, ::MACD_PriceStopLevel, ::MACD_TickFilterMethod, ::MACD_MaxSpread,
-                  ::MACD_Shift, ::MACD_OrderCloseTime) {}
+                  ::MACD_SignalOpenBoostMethod, ::MACD_SignalCloseMethod, ::MACD_SignalCloseFilter,
+                  ::MACD_SignalCloseLevel, ::MACD_PriceStopMethod, ::MACD_PriceStopLevel, ::MACD_TickFilterMethod,
+                  ::MACD_MaxSpread, ::MACD_Shift, ::MACD_OrderCloseTime) {}
 } stg_macd_defaults;
 
 // Struct to define strategy parameters to override.
