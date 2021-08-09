@@ -9,6 +9,7 @@ INPUT float MACD_LotSize = 0;                // Lot size
 INPUT int MACD_SignalOpenMethod = 2;         // Signal open method (-127-127)
 INPUT float MACD_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int MACD_SignalOpenFilterMethod = 32;  // Signal open filter method
+INPUT int MACD_SignalOpenFilterTime = 6;     // Signal open filter time
 INPUT int MACD_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int MACD_SignalCloseMethod = 2;        // Signal close method (-127-127)
 INPUT int MACD_SignalCloseFilter = 0;        // Signal close filter (-127-127)
@@ -47,6 +48,7 @@ struct Stg_MACD_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCL, MACD_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, MACD_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, MACD_OrderCloseTime);
+    Set(STRAT_PARAM_SOFT, MACD_SignalOpenFilterTime);
   }
 } stg_macd_defaults;
 
