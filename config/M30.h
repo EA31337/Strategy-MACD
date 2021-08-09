@@ -22,7 +22,6 @@ struct Stg_MACD_Params_M30 : StgParams {
     signal_close_level = (float)0;
     signal_close_method = 2;
     signal_open_boost = 0;
-    signal_open_filter = 32;
     signal_open_level = (float)30;
     signal_open_method = 2;
     price_profit_method = 60;
