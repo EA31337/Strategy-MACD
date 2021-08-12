@@ -6,15 +6,15 @@
 // User input params.
 INPUT_GROUP("MACD strategy: strategy params");
 INPUT float MACD_LotSize = 0;                // Lot size
-INPUT int MACD_SignalOpenMethod = 2;         // Signal open method (-127-127)
-INPUT float MACD_SignalOpenLevel = 0.0f;     // Signal open level
+INPUT int MACD_SignalOpenMethod = 0;         // Signal open method (-127-127)
+INPUT float MACD_SignalOpenLevel = 2.0f;     // Signal open level
 INPUT int MACD_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT int MACD_SignalOpenFilterTime = 6;     // Signal open filter time
 INPUT int MACD_SignalOpenBoostMethod = 0;    // Signal open boost method
-INPUT int MACD_SignalCloseMethod = 2;        // Signal close method (-127-127)
+INPUT int MACD_SignalCloseMethod = 0;        // Signal close method (-127-127)
 INPUT int MACD_SignalCloseFilter = 0;        // Signal close filter (-127-127)
-INPUT float MACD_SignalCloseLevel = 0.0f;    // Signal close level
-INPUT int MACD_PriceStopMethod = 1;          // Price stop method
+INPUT float MACD_SignalCloseLevel = 2.0f;    // Signal close level
+INPUT int MACD_PriceStopMethod = 1;          // Price stop method (0-127)
 INPUT float MACD_PriceStopLevel = 0;         // Price stop level
 INPUT int MACD_TickFilterMethod = 1;         // Tick filter method
 INPUT float MACD_MaxSpread = 4.0;            // Max spread to trade (pips)
@@ -23,11 +23,11 @@ INPUT float MACD_OrderCloseLoss = 0;         // Order close loss
 INPUT float MACD_OrderCloseProfit = 0;       // Order close profit
 INPUT int MACD_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
 INPUT_GROUP("MACD strategy: MACD indicator params");
-INPUT int MACD_Indi_MACD_Period_Fast = 16;                                      // Period Fast
-INPUT int MACD_Indi_MACD_Period_Slow = 30;                                      // Period Slow
-INPUT int MACD_Indi_MACD_Period_Signal = 8;                                     // Period for signal
-INPUT ENUM_APPLIED_PRICE MACD_Indi_MACD_Applied_Price = (ENUM_APPLIED_PRICE)3;  // Applied Price
-INPUT int MACD_Indi_MACD_Shift = 0;                                             // Shift
+INPUT int MACD_Indi_MACD_Period_Fast = 6;                            // Period Fast
+INPUT int MACD_Indi_MACD_Period_Slow = 34;                           // Period Slow
+INPUT int MACD_Indi_MACD_Period_Signal = 10;                         // Period Signal
+INPUT ENUM_APPLIED_PRICE MACD_Indi_MACD_Applied_Price = PRICE_OPEN;  // Applied Price
+INPUT int MACD_Indi_MACD_Shift = 0;                                  // Shift
 
 // Structs.
 
@@ -112,13 +112,15 @@ class Stg_MACD : public Strategy {
     IndicatorSignal _signals = _indi.GetSignals(4, _shift, LINE_MAIN, LINE_SIGNAL);
     switch (_cmd) {
       case ORDER_TYPE_BUY:
-        _result &= _indi.IsIncreasing(2, LINE_SIGNAL);
         _result &= _indi[_shift][(int)LINE_SIGNAL] > _indi[_shift][(int)LINE_MAIN];
+        _result &= _indi.IsIncreasing(2, LINE_SIGNAL);
+        _result &= _indi.IsIncByPct(_level, 0, _shift, 3);
         _result &= _method > 0 ? _signals.CheckSignals(_method) : _signals.CheckSignalsAll(-_method);
         break;
       case ORDER_TYPE_SELL:
-        _result &= _indi.IsDecreasing(2, LINE_SIGNAL);
         _result &= _indi[_shift][(int)LINE_SIGNAL] < _indi[_shift][(int)LINE_MAIN];
+        _result &= _indi.IsDecreasing(2, LINE_SIGNAL);
+        _result &= _indi.IsDecByPct(-_level, 0, _shift, 3);
         _result &= _method > 0 ? _signals.CheckSignals(_method) : _signals.CheckSignalsAll(-_method);
         break;
     }
