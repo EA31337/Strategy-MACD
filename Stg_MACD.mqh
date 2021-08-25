@@ -21,7 +21,7 @@ INPUT float MACD_MaxSpread = 4.0;            // Max spread to trade (pips)
 INPUT short MACD_Shift = 0;                  // Shift
 INPUT float MACD_OrderCloseLoss = 0;         // Order close loss
 INPUT float MACD_OrderCloseProfit = 0;       // Order close profit
-INPUT int MACD_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
+INPUT int MACD_OrderCloseTime = -30;         // Order close time in mins (>0) or bars (<0)
 INPUT_GROUP("MACD strategy: MACD indicator params");
 INPUT int MACD_Indi_MACD_Period_Fast = 6;                            // Period Fast
 INPUT int MACD_Indi_MACD_Period_Slow = 34;                           // Period Slow
