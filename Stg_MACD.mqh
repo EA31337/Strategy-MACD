@@ -45,6 +45,7 @@ struct Stg_MACD_Params_Defaults : StgParams {
                   ::MACD_SignalOpenBoostMethod, ::MACD_SignalCloseMethod, ::MACD_SignalCloseFilter,
                   ::MACD_SignalCloseLevel, ::MACD_PriceStopMethod, ::MACD_PriceStopLevel, ::MACD_TickFilterMethod,
                   ::MACD_MaxSpread, ::MACD_Shift) {
+    Set(STRAT_PARAM_LS, MACD_LotSize);
     Set(STRAT_PARAM_OCL, MACD_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, MACD_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, MACD_OrderCloseTime);
