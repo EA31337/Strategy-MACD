@@ -82,7 +82,6 @@ class Stg_MACD : public Strategy {
                              stg_macd_h4, stg_macd_h8);
 #endif
     // Initialize indicator.
-    MACDParams macd_params(_indi_params);
     _stg_params.SetIndicator(new Indi_MACD(_indi_params));
     // Initialize Strategy instance.
     ChartParams _cparams(_tf, _Symbol);
