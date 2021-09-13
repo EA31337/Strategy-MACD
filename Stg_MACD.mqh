@@ -36,7 +36,7 @@ struct Indi_MACD_Params_Defaults : MACDParams {
   Indi_MACD_Params_Defaults()
       : MACDParams(::MACD_Indi_MACD_Period_Fast, ::MACD_Indi_MACD_Period_Slow, ::MACD_Indi_MACD_Period_Signal,
                    ::MACD_Indi_MACD_Applied_Price, ::MACD_Indi_MACD_Shift) {}
-} indi_macd_defaults;
+};
 
 // Defines struct with default user strategy values.
 struct Stg_MACD_Params_Defaults : StgParams {
@@ -51,7 +51,7 @@ struct Stg_MACD_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCT, MACD_OrderCloseTime);
     Set(STRAT_PARAM_SOFT, MACD_SignalOpenFilterTime);
   }
-} stg_macd_defaults;
+};
 
 #ifdef __config__
 // Loads pair specific param values.
@@ -71,7 +71,9 @@ class Stg_MACD : public Strategy {
 
   static Stg_MACD *Init(ENUM_TIMEFRAMES _tf = NULL) {
     // Initialize strategy initial values.
+    Indi_MACD_Params_Defaults indi_macd_defaults;
     MACDParams _indi_params(indi_macd_defaults, _tf);
+    Stg_MACD_Params_Defaults stg_macd_defaults;
     StgParams _stg_params(stg_macd_defaults);
 #ifdef __config__
     SetParamsByTf<MACDParams>(_indi_params, _tf, indi_macd_m1, indi_macd_m5, indi_macd_m15, indi_macd_m30, indi_macd_h1,
