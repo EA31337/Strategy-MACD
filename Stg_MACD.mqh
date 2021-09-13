@@ -53,19 +53,6 @@ struct Stg_MACD_Params_Defaults : StgParams {
   }
 } stg_macd_defaults;
 
-// Struct to define strategy parameters to override.
-struct Stg_MACD_Params : StgParams {
-  MACDParams iparams;
-  StgParams sparams;
-
-  // Struct constructors.
-  Stg_MACD_Params(MACDParams &_iparams, StgParams &_sparams)
-      : iparams(indi_macd_defaults, _iparams.tf.GetTf()), sparams(stg_macd_defaults) {
-    iparams = _iparams;
-    sparams = _sparams;
-  }
-};
-
 #ifdef __config__
 // Loads pair specific param values.
 #include "config/H1.h"
