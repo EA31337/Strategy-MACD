@@ -4,8 +4,8 @@
  */
 
 // Defines indicator's parameter values for the given pair symbol and timeframe.
-struct Indi_MACD_Params_H8 : MACDParams {
-  Indi_MACD_Params_H8() : MACDParams(indi_macd_defaults, PERIOD_H8) { shift = 0; }
+struct Indi_MACD_Params_H8 : IndiMACDParams {
+  Indi_MACD_Params_H8() : IndiMACDParams(indi_macd_defaults, PERIOD_H8) { shift = 0; }
 } indi_macd_h8;
 
 // Defines strategy's parameter values for the given pair symbol and timeframe.

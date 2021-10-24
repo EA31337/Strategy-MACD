@@ -4,8 +4,8 @@
  */
 
 // Defines indicator's parameter values for the given pair symbol and timeframe.
-struct Indi_MACD_Params_H1 : MACDParams {
-  Indi_MACD_Params_H1() : MACDParams(indi_macd_defaults, PERIOD_H1) {
+struct Indi_MACD_Params_H1 : IndiMACDParams {
+  Indi_MACD_Params_H1() : IndiMACDParams(indi_macd_defaults, PERIOD_H1) {
     applied_price = (ENUM_APPLIED_PRICE)0;
     ema_fast_period = 12;
     ema_slow_period = 26;
