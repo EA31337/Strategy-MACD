@@ -71,13 +71,9 @@ class Stg_MACD : public Strategy {
 
   static Stg_MACD *Init(ENUM_TIMEFRAMES _tf = NULL) {
     // Initialize strategy initial values.
-    Indi_MACD_Params_Defaults indi_macd_defaults;
-    IndiMACDParams _indi_params(indi_macd_defaults, _tf);
     Stg_MACD_Params_Defaults stg_macd_defaults;
     StgParams _stg_params(stg_macd_defaults);
 #ifdef __config__
-    SetParamsByTf<IndiMACDParams>(_indi_params, _tf, indi_macd_m1, indi_macd_m5, indi_macd_m15, indi_macd_m30,
-                                  indi_macd_h1, indi_macd_h4, indi_macd_h8);
     SetParamsByTf<StgParams>(_stg_params, _tf, stg_macd_m1, stg_macd_m5, stg_macd_m15, stg_macd_m30, stg_macd_h1,
                              stg_macd_h4, stg_macd_h8);
 #endif
@@ -86,8 +82,16 @@ class Stg_MACD : public Strategy {
     ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams;
     Strategy *_strat = new Stg_MACD(_stg_params, _tparams, _cparams, "MACD");
-    _strat.SetIndicator(new Indi_MACD(_indi_params));
     return _strat;
+  }
+
+  /**
+   * Event on strategy's init.
+   */
+  void OnInit() {
+    Indi_MACD_Params_Defaults indi_macd_defaults;
+    IndiMACDParams _indi_params(indi_macd_defaults, Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
+    SetIndicator(new Indi_MACD(_indi_params));
   }
 
   /**
