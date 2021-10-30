@@ -31,13 +31,6 @@ INPUT int MACD_Indi_MACD_Shift = 0;                                  // Shift
 
 // Structs.
 
-// Defines struct with default user indicator values.
-struct Indi_MACD_Params_Defaults : IndiMACDParams {
-  Indi_MACD_Params_Defaults()
-      : IndiMACDParams(::MACD_Indi_MACD_Period_Fast, ::MACD_Indi_MACD_Period_Slow, ::MACD_Indi_MACD_Period_Signal,
-                       ::MACD_Indi_MACD_Applied_Price, ::MACD_Indi_MACD_Shift) {}
-};
-
 // Defines struct with default user strategy values.
 struct Stg_MACD_Params_Defaults : StgParams {
   Stg_MACD_Params_Defaults()
@@ -89,8 +82,9 @@ class Stg_MACD : public Strategy {
    * Event on strategy's init.
    */
   void OnInit() {
-    Indi_MACD_Params_Defaults indi_macd_defaults;
-    IndiMACDParams _indi_params(indi_macd_defaults, Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
+    IndiMACDParams _indi_params(::MACD_Indi_MACD_Period_Fast, ::MACD_Indi_MACD_Period_Slow,
+                                ::MACD_Indi_MACD_Period_Signal, ::MACD_Indi_MACD_Applied_Price, ::MACD_Indi_MACD_Shift);
+    _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
     SetIndicator(new Indi_MACD(_indi_params));
   }
 
