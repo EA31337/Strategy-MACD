@@ -102,13 +102,13 @@ class Stg_MACD : public Strategy {
     switch (_cmd) {
       case ORDER_TYPE_BUY:
         _result &= _indi[_shift][(int)LINE_SIGNAL] > _indi[_shift][(int)LINE_MAIN];
-        _result &= _indi.IsIncreasing(2, LINE_SIGNAL);
+        _result &= _indi.IsIncreasing(2, LINE_SIGNAL, _shift);
         _result &= _indi.IsIncByPct(_level, 0, _shift, 3);
         _result &= _method > 0 ? _signals.CheckSignals(_method) : _signals.CheckSignalsAll(-_method);
         break;
       case ORDER_TYPE_SELL:
         _result &= _indi[_shift][(int)LINE_SIGNAL] < _indi[_shift][(int)LINE_MAIN];
-        _result &= _indi.IsDecreasing(2, LINE_SIGNAL);
+        _result &= _indi.IsDecreasing(2, LINE_SIGNAL, _shift);
         _result &= _indi.IsDecByPct(-_level, 0, _shift, 3);
         _result &= _method > 0 ? _signals.CheckSignals(_method) : _signals.CheckSignalsAll(-_method);
         break;
